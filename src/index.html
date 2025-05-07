@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HH Job Analysis</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="importmap">
+    {
+      "imports": {
+        "d3": "https://cdn.jsdelivr.net/npm/d3@7/+esm"
+      }
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="js/main.js" type="module"></script>
+</head>
+<body>
+    <header>
+        <h1>HH Job Analysis</h1>
+        <p>Visualizations of job data including experience, salary, and skills.</p>
+    </header>
+    <main>
+        <section id="experience-chart">
+            <h2>Top 3 Skills by Experience Level</h2>
+            <div class="chart" id="experience-chart-container"></div>
+        </section>
+        <section id="salary-chart">
+            <h2>Salaries by Experience Level</h2>
+            <div class="chart" id="salary-chart-container"></div>
+        </section>
+        <section id="skills-chart">
+            <h2>Top 10 Most Common Skills</h2>
+            <div class="chart" id="skills-chart-container"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Bulat Akhmatov</p>
+    </footer>
+</body>
+</html>
