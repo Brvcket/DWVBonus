@@ -1,69 +1,215 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #f72585;
+  --background-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-primary: #2b2d42;
+  --text-secondary: #6c757d;
+  --border-radius: 12px;
+  --box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
 }
 
-h1, h2, h3 {
-    color: #333;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--box-shadow);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding-bottom: 3rem;
+}
+
+section {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+section h2 {
+  padding: 1.5rem 1.5rem 0;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .chart {
-    margin: 20px 0;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  min-height: 400px;
+  position: relative;
 }
 
-.chart-title {
-    text-align: center;
-    font-size: 1.5em;
-    margin-bottom: 10px;
+/* D3 specific styles */
+.axis text {
+  font-size: 11px;
+  fill: var(--text-secondary);
 }
 
-.axis {
-    font-size: 12px;
-    fill: #666;
+.axis line, .axis path {
+  stroke: #e0e0e0;
+}
+
+.axis-title {
+  font-size: 12px;
+  font-weight: 500;
+  fill: var(--text-secondary);
 }
 
 .bar {
-    fill: steelblue;
+  fill: var(--primary-color);
+  transition: var(--transition);
 }
 
 .bar:hover {
-    fill: orange;
+  fill: var(--accent-color);
+  opacity: 0.9;
 }
 
 .line {
-    fill: none;
-    stroke: steelblue;
-    stroke-width: 2px;
+  fill: none;
+  stroke: var(--primary-color);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
 
 .dot {
-    fill: steelblue;
+  fill: var(--primary-color);
+  stroke: white;
+  stroke-width: 1.5px;
 }
 
 .legend {
-    font-size: 12px;
-    margin: 10px 0;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .tooltip {
-    position: absolute;
-    text-align: center;
-    padding: 5px;
-    font: 12px sans-serif;
-    background: lightsteelblue;
-    border: 0px;
-    border-radius: 8px;
-    pointer-events: none;
+  position: absolute;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 5px;
+  pointer-events: none;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  max-width: 200px;
+}
+
+/* Arc styling for pie charts */
+.arc {
+  transition: var(--transition);
+}
+
+.arc:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+}
+
+.arc path {
+  stroke: white;
+  stroke-width: 2px;
+}
+
+/* Grid lines in chart */
+.grid line {
+  stroke: #e0e0e0;
+  stroke-opacity: 0.5;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+/* Responsive design */
+@media (min-width: 768px) {
+  main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  #skills-chart {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 767px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  header p {
+    font-size: 1rem;
+  }
+  
+  section h2 {
+    font-size: 1.3rem;
+  }
+  
+  .chart {
+    min-height: 300px;
+  }
+}
+
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-top: 2rem;
+}
+
+footer p {
+  opacity: 0.9;
+  font-size: 0.9rem;
 }
